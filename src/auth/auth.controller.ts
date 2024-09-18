@@ -17,5 +17,3 @@ export class AuthController {
     }
   }
 }
-
-// https://github.com/ddpeream/todo-backend.git
