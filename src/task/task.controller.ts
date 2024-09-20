@@ -12,9 +12,9 @@ export class TaskController {
     return await this.taskService.create(body);
   }
 
-  @Get('all')
-  async findAll(): Promise<Task[]> {
-    return await this.taskService.findAll();
+  @Get('all/:userId')
+  async findAll(@Param('userId') userId: string): Promise<Task[]> {
+    return await this.taskService.findAll(userId);
   }
 
   @Get(':id')

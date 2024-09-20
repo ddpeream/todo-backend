@@ -16,8 +16,14 @@ export class TaskService {
     return this.tasksRepository.save(task);
   }
 
-  async findAll(): Promise<Task[]> {
-    return this.tasksRepository.find();
+  async findAll(userId: string): Promise<Task[]> {
+    
+    const tasks = await this.tasksRepository.createQueryBuilder('task')
+      .innerJoinAndSelect('task.user', 'user')
+      .where('user.id = :userId', { userId })
+      .getMany();
+
+    return tasks;
   }
 
   async findOne(id: string): Promise<Task> {
