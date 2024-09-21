@@ -4,6 +4,9 @@ FROM node:18
 # Establecer el directorio de trabajo
 WORKDIR /app
 
+# Verificar la versión de Node.js
+RUN node -v
+
 # Copiar package.json y package-lock.json al contenedor
 COPY package*.json ./
 
