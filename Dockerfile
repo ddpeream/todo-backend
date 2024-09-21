@@ -1,20 +1,23 @@
-# Usar una imagen base de Node.js
-FROM node:14
+# Usar la imagen oficial de Node.js versión 18
+FROM node:18
 
 # Establecer el directorio de trabajo
 WORKDIR /app
 
-# Copiar el archivo package.json y package-lock.json
+# Copiar package.json y package-lock.json al contenedor
 COPY package*.json ./
 
 # Instalar las dependencias
 RUN npm install
 
-# Copiar el resto de la aplicación
+# Copiar el resto del código de la aplicación al contenedor
 COPY . .
 
-# Compilar la aplicación
+# Construir la aplicación
 RUN npm run build
+
+# Exponer el puerto
+EXPOSE 3000
 
 # Comando para ejecutar la aplicación
 CMD ["npm", "run", "start:prod"]
